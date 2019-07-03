@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>木木杰</title>
+  <title>木杰の博客</title>
   
-  
+  <subtitle>记录生活中的点点滴滴</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://mxsail.com/"/>
@@ -10,7 +10,7 @@
   <id>https://mxsail.com/</id>
   
   <author>
-    <name>木木杰</name>
+    <name>木杰</name>
     
   </author>
   
