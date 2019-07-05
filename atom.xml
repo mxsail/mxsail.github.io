@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://mxsail.com/"/>
-  <updated>2019-07-05T11:55:57.532Z</updated>
+  <updated>2019-07-05T12:00:31.620Z</updated>
   <id>https://mxsail.com/</id>
   
   <author>
@@ -15,6 +15,66 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>javaWeb应用防止xss攻击</title>
+    <link href="https://mxsail.com/2019/07/05/javaWeb%E5%BA%94%E7%94%A8%E9%98%B2%E6%AD%A2xss%E6%94%BB%E5%87%BB/"/>
+    <id>https://mxsail.com/2019/07/05/javaWeb应用防止xss攻击/</id>
+    <published>2019-07-05T11:59:47.000Z</published>
+    <updated>2019-07-05T12:00:31.620Z</updated>
+    
+    <content type="html"><![CDATA[<p>1 . pom中增加依赖 </p><p>&lt;!–￼0–&gt;</p><p>2 . 增加标签处理类 </p><p>&lt;!–￼1–&gt;</p><p>3 . 重写请求参数处理函数 </p><p>&lt;!–￼2–&gt;</p><p>4 . 编写XSSFilter </p><p>&lt;!–￼3–&gt;</p><p>5 .  增加XSS配置 </p><p>&lt;!–￼4–&gt;</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;1 . pom中增加依赖 &lt;/p&gt;
+&lt;p&gt;&amp;lt;!–￼0–&amp;gt;&lt;/p&gt;
+&lt;p&gt;2 . 增加标签处理类 &lt;/p&gt;
+&lt;p&gt;&amp;lt;!–￼1–&amp;gt;&lt;/p&gt;
+&lt;p&gt;3 . 重写请求参数处理函数 &lt;/p&gt;
+&lt;p&gt;&amp;lt;!–￼2–&amp;gt;&lt;/p&gt;
+&lt;p&gt;4 . 编写XSSF
+      
+    
+    </summary>
+    
+      <category term="springboot" scheme="https://mxsail.com/categories/springboot/"/>
+    
+    
+      <category term="xss" scheme="https://mxsail.com/tags/xss/"/>
+    
+      <category term="javaWeb" scheme="https://mxsail.com/tags/javaWeb/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>windows常用命令</title>
+    <link href="https://mxsail.com/2019/07/05/windows%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>https://mxsail.com/2019/07/05/windows常用命令/</id>
+    <published>2019-07-05T11:57:37.000Z</published>
+    <updated>2019-07-05T11:58:51.543Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li><p>查看端口占用</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -aon|findstr <span class="string">"8080"</span></span><br></pre></td></tr></table></figure></li></ol><ol start="2"><li><p>查看具体的进程</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist|findstr <span class="string">"4416"</span></span><br></pre></td></tr></table></figure></li></ol><ol start="3"><li><p>终止某个进程</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">taskkill /F /T /IM nginx.exe</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;&lt;p&gt;查看端口占用&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class
+      
+    
+    </summary>
+    
+      <category term="windows" scheme="https://mxsail.com/categories/windows/"/>
+    
+    
+      <category term="cmd" scheme="https://mxsail.com/tags/cmd/"/>
+    
+  </entry>
   
   <entry>
     <title>Oracle创建数据库</title>
