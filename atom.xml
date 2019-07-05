@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://mxsail.com/"/>
-  <updated>2019-07-03T08:43:11.752Z</updated>
+  <updated>2019-07-05T11:42:24.652Z</updated>
   <id>https://mxsail.com/</id>
   
   <author>
@@ -17,23 +17,61 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="https://mxsail.com/2019/07/03/hello-world/"/>
-    <id>https://mxsail.com/2019/07/03/hello-world/</id>
-    <published>2019-07-03T08:43:11.752Z</published>
-    <updated>2019-07-03T08:43:11.752Z</updated>
+    <title>解决WEB应用接口调用时跨域以及session失效问题</title>
+    <link href="https://mxsail.com/2019/07/05/%E8%A7%A3%E5%86%B3WEB%E5%BA%94%E7%94%A8%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E6%97%B6%E8%B7%A8%E5%9F%9F%E4%BB%A5%E5%8F%8Asession%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98/"/>
+    <id>https://mxsail.com/2019/07/05/解决WEB应用接口调用时跨域以及session失效问题/</id>
+    <published>2019-07-05T11:32:32.000Z</published>
+    <updated>2019-07-05T11:42:24.652Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="场景复现"><a href="#场景复现" class="headerlink" title="场景复现"></a>场景复现</h2><p>springboot应用前后端分离,客户跨域调用开放接口验证验证码时,输入正确的验证码无法通过验证</p><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>方案一 :直接在 Controller 上使用@CrossOrigin 注解(版本要求Spring MVC4.2 + , 未验证)</p><p>方案二 :重写 Filter 的 doFilter 方法</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;  </span><br><span class="line"><span class="keyword">import</span> javax.servlet.\*;  </span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;  </span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;  </span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CorsFilter</span>  <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123; </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig filterConfig)</span> <span class="keyword">throws</span>  ServletException </span>&#123;  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest req, ServletResponse res, FilterChain chain)</span> <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">        HttpServletResponse response = (HttpServletResponse) res;</span><br><span class="line">        HttpServletRequest request = (HttpServletRequest)req;</span><br><span class="line">        response.setHeader(<span class="string">"Access-Control-Allow-Origin"</span>,request.getHeader(<span class="string">"Origin"</span>));</span><br><span class="line">        response.setHeader(<span class="string">"Access-Control-Allow-Methods"</span>, <span class="string">"POST, GET, OPTIONS, DELETE"</span>);</span><br><span class="line">        response.setHeader(<span class="string">"Access-Control-Max-Age"</span>, <span class="string">"3600"</span>);</span><br><span class="line">        response.setHeader(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"x-requested-with"</span>);</span><br><span class="line">        response.setHeader(<span class="string">"Access-Control-Allow-Credentials"</span>,<span class="string">"true"</span>);</span><br><span class="line">        chain.doFilter(req, res);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>​    前端调用请求时加上: <strong>xhrFields: {withCredentials: true},crossDomain: true</strong></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> $.ajax(&#123;</span><br><span class="line"> type: <span class="string">'POST'</span>,</span><br><span class="line"> url: <span class="string">'/IGI/openPublicApplication/depts'</span>,</span><br><span class="line">      xhrFields: &#123;<span class="attr">withCredentials</span>: <span class="literal">true</span>&#125;, </span><br><span class="line">      crossDomain: <span class="literal">true</span></span><br><span class="line"> data:&#123;</span><br><span class="line">...</span><br><span class="line">&#125;,</span><br><span class="line"> dataType: <span class="string">'json'</span>,</span><br><span class="line"> success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">...</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+        &lt;h2 id=&quot;场景复现&quot;&gt;&lt;a href=&quot;#场景复现&quot; class=&quot;headerlink&quot; title=&quot;场景复现&quot;&gt;&lt;/a&gt;场景复现&lt;/h2&gt;&lt;p&gt;springboot应用前后端分离,客户跨域调用开放接口验证验证码时,输入正确的验证码无法通过验证&lt;/p&gt;
+&lt;h2 id=&quot;
       
     
     </summary>
     
+      <category term="springboot" scheme="https://mxsail.com/categories/springboot/"/>
+    
+    
+      <category term="api" scheme="https://mxsail.com/tags/api/"/>
+    
+      <category term="跨域" scheme="https://mxsail.com/tags/%E8%B7%A8%E5%9F%9F/"/>
+    
+      <category term="java" scheme="https://mxsail.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Apache开启反向代理-windows</title>
+    <link href="https://mxsail.com/2019/07/05/Apache%E5%BC%80%E5%90%AF%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86-windows/"/>
+    <id>https://mxsail.com/2019/07/05/Apache开启反向代理-windows/</id>
+    <published>2019-07-05T11:19:18.000Z</published>
+    <updated>2019-07-05T11:30:03.712Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="修改httpd-conf配置文件"><a href="#修改httpd-conf配置文件" class="headerlink" title="修改httpd.conf配置文件"></a>修改httpd.conf配置文件</h1><h2 id="1-反注释以下模块"><a href="#1-反注释以下模块" class="headerlink" title="1. 反注释以下模块"></a>1. 反注释以下模块</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">LoadModule negotiation_module modules/mod_negotiation.so</span><br><span class="line">LoadModule proxy_module modules/mod_proxy.so</span><br><span class="line">LoadModule proxy_ajp_module modules/mod_proxy_ajp.so</span><br><span class="line">LoadModule proxy_balancer_module modules/mod_proxy_balancer.so</span><br><span class="line">LoadModule proxy_connect_module modules/mod_proxy_connect.so</span><br><span class="line">LoadModule proxy_ftp_module modules/mod_proxy_ftp.so</span><br><span class="line">LoadModule proxy_http_module modules/mod_proxy_http.so</span><br><span class="line">LoadModule slotmem_shm_module modules/mod_slotmem_shm.so</span><br></pre></td></tr></table></figure><h2 id="2-设置需要反向代理的url"><a href="#2-设置需要反向代理的url" class="headerlink" title="2. 设置需要反向代理的url"></a>2. 设置需要反向代理的url</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ProxyPass /test http://192.168.200.124/test</span><br><span class="line">ProxyPassReverse /test http://192.168.200.124/test</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;修改httpd-conf配置文件&quot;&gt;&lt;a href=&quot;#修改httpd-conf配置文件&quot; class=&quot;headerlink&quot; title=&quot;修改httpd.conf配置文件&quot;&gt;&lt;/a&gt;修改httpd.conf配置文件&lt;/h1&gt;&lt;h2 id=&quot;1-反注释以下模块
+      
+    
+    </summary>
+    
+      <category term="备忘录" scheme="https://mxsail.com/categories/%E5%A4%87%E5%BF%98%E5%BD%95/"/>
+    
+    
+      <category term="Apache" scheme="https://mxsail.com/tags/Apache/"/>
+    
+      <category term="反向代理" scheme="https://mxsail.com/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/"/>
+    
+      <category term="windows" scheme="https://mxsail.com/tags/windows/"/>
     
   </entry>
   
