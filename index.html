@@ -350,6 +350,348 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mxsail.com/2019/07/05/Oracle创建数据库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="木杰">
+      <meta itemprop="description" content="roadAheadEnding.isVisual = false; if(!spareEffort()){i.searchWith(willUnbending);}">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木杰の博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/05/Oracle创建数据库/" class="post-title-link" itemprop="url">Oracle创建数据库</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-07-05 19:55:04 / Modified: 19:55:57" itemprop="dateCreated datePublished" datetime="2019-07-05T19:55:04+08:00">2019-07-05</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>表空间：tablespace为表空间名;datafile为存放.dbf文件的路径</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> struts2 <span class="keyword">datafile</span> <span class="string">'E:\oracle\dmp\struts2.dbf'</span> <span class="keyword">size</span> <span class="number">500</span>m</span><br></pre></td></tr></table></figure>
+
+<p>用户：用户名struts2   密码 1  默认表空间名struts2 </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> struts2 <span class="keyword">identified</span> <span class="keyword">by</span> <span class="number">1</span> <span class="keyword">default</span> <span class="keyword">tablespace</span> struts2 <span class="keyword">quota</span> <span class="keyword">unlimited</span> <span class="keyword">on</span> struts2;</span><br></pre></td></tr></table></figure>
+
+<p>给用户分配权限</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> dba <span class="keyword">to</span> struts2;</span><br></pre></td></tr></table></figure>
+
+<p>分配系统权限</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> <span class="keyword">unlimited</span> <span class="keyword">tablespace</span> <span class="keyword">to</span> struts2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">session</span> <span class="keyword">to</span> struts2</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+          
+    </div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mxsail.com/2019/07/05/修改oracle字符集为AL32UTF8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="木杰">
+      <meta itemprop="description" content="roadAheadEnding.isVisual = false; if(!spareEffort()){i.searchWith(willUnbending);}">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木杰の博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/05/修改oracle字符集为AL32UTF8/" class="post-title-link" itemprop="url">修改oracle字符集为AL32UTF8</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-07-05 19:48:49 / Modified: 19:56:05" itemprop="dateCreated datePublished" datetime="2019-07-05T19:48:49+08:00">2019-07-05</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[oracle@VM_191_239_centos ~]$ sqlplus /nolog</span><br><span class="line"></span><br><span class="line">SQL&gt; conn /as sysdba</span><br><span class="line">SQL&gt; shutdown immediate;</span><br><span class="line">SQL&gt; startup mount</span><br><span class="line">SQL&gt; ALTER SYSTEM ENABLE RESTRICTED SESSION;</span><br><span class="line">SQL&gt; ALTER SYSTEM SET JOB_QUEUE_PROCESSES=0;</span><br><span class="line">SQL&gt; ALTER SYSTEM SET AQ_TM_PROCESSES=0;</span><br><span class="line">SQL&gt; alter database open;</span><br><span class="line">SQL&gt; ALTER DATABASE CHARACTER SET AL32UTF8;</span><br><span class="line">    ORA-12712: new character <span class="built_in">set</span> must be a superset of old character <span class="built_in">set</span></span><br><span class="line">    --提示我们的字符集：新字符集必须为旧字符集的超集，这时我们可以跳过超集的检查做更改：</span><br><span class="line">SQL&gt; ALTER DATABASE character <span class="built_in">set</span> INTERNAL_USE AL32UTF8;</span><br><span class="line">    --我们看到这个过程和之前ALTER DATABASE CHARACTER SET操作的内部过程是完全相同的，也就是说INTERNAL_USE提供的帮助就是使Oracle数据库绕过了子集与超集的校验.</span><br><span class="line">SQL&gt; select * from v<span class="variable">$nls_parameters</span>; </span><br><span class="line">SQL&gt; shutdown immediate;</span><br><span class="line">SQL&gt; startup</span><br><span class="line">SQL&gt; select * from v<span class="variable">$nls_parameters</span>;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+          
+    </div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://mxsail.com/2019/07/05/解决WEB应用接口调用时跨域以及session失效问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -717,7 +1059,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -738,7 +1080,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -767,7 +1111,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

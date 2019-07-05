@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://mxsail.com/"/>
-  <updated>2019-07-05T11:42:24.652Z</updated>
+  <updated>2019-07-05T11:55:57.532Z</updated>
   <id>https://mxsail.com/</id>
   
   <author>
@@ -15,6 +15,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Oracle创建数据库</title>
+    <link href="https://mxsail.com/2019/07/05/Oracle%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <id>https://mxsail.com/2019/07/05/Oracle创建数据库/</id>
+    <published>2019-07-05T11:55:04.000Z</published>
+    <updated>2019-07-05T11:55:57.532Z</updated>
+    
+    <content type="html"><![CDATA[<p>表空间：tablespace为表空间名;datafile为存放.dbf文件的路径</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> struts2 <span class="keyword">datafile</span> <span class="string">'E:\oracle\dmp\struts2.dbf'</span> <span class="keyword">size</span> <span class="number">500</span>m</span><br></pre></td></tr></table></figure><p>用户：用户名struts2   密码 1  默认表空间名struts2 </p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> struts2 <span class="keyword">identified</span> <span class="keyword">by</span> <span class="number">1</span> <span class="keyword">default</span> <span class="keyword">tablespace</span> struts2 <span class="keyword">quota</span> <span class="keyword">unlimited</span> <span class="keyword">on</span> struts2;</span><br></pre></td></tr></table></figure><p>给用户分配权限</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> dba <span class="keyword">to</span> struts2;</span><br></pre></td></tr></table></figure><p>分配系统权限</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> <span class="keyword">unlimited</span> <span class="keyword">tablespace</span> <span class="keyword">to</span> struts2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">session</span> <span class="keyword">to</span> struts2</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;表空间：tablespace为表空间名;datafile为存放.dbf文件的路径&lt;/p&gt;
+&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;
+      
+    
+    </summary>
+    
+      <category term="数据库" scheme="https://mxsail.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="Oracle" scheme="https://mxsail.com/tags/Oracle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>修改oracle字符集为AL32UTF8</title>
+    <link href="https://mxsail.com/2019/07/05/%E4%BF%AE%E6%94%B9oracle%E5%AD%97%E7%AC%A6%E9%9B%86%E4%B8%BAAL32UTF8/"/>
+    <id>https://mxsail.com/2019/07/05/修改oracle字符集为AL32UTF8/</id>
+    <published>2019-07-05T11:48:49.000Z</published>
+    <updated>2019-07-05T11:56:05.403Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[oracle@VM_191_239_centos ~]$ sqlplus /nolog</span><br><span class="line"></span><br><span class="line">SQL&gt; conn /as sysdba</span><br><span class="line">SQL&gt; shutdown immediate;</span><br><span class="line">SQL&gt; startup mount</span><br><span class="line">SQL&gt; ALTER SYSTEM ENABLE RESTRICTED SESSION;</span><br><span class="line">SQL&gt; ALTER SYSTEM SET JOB_QUEUE_PROCESSES=0;</span><br><span class="line">SQL&gt; ALTER SYSTEM SET AQ_TM_PROCESSES=0;</span><br><span class="line">SQL&gt; alter database open;</span><br><span class="line">SQL&gt; ALTER DATABASE CHARACTER SET AL32UTF8;</span><br><span class="line">    ORA-12712: new character <span class="built_in">set</span> must be a superset of old character <span class="built_in">set</span></span><br><span class="line">    --提示我们的字符集：新字符集必须为旧字符集的超集，这时我们可以跳过超集的检查做更改：</span><br><span class="line">SQL&gt; ALTER DATABASE character <span class="built_in">set</span> INTERNAL_USE AL32UTF8;</span><br><span class="line">    --我们看到这个过程和之前ALTER DATABASE CHARACTER SET操作的内部过程是完全相同的，也就是说INTERNAL_USE提供的帮助就是使Oracle数据库绕过了子集与超集的校验.</span><br><span class="line">SQL&gt; select * from v<span class="variable">$nls_parameters</span>; </span><br><span class="line">SQL&gt; shutdown immediate;</span><br><span class="line">SQL&gt; startup</span><br><span class="line">SQL&gt; select * from v<span class="variable">$nls_parameters</span>;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=
+      
+    
+    </summary>
+    
+      <category term="数据库" scheme="https://mxsail.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="Oracle" scheme="https://mxsail.com/tags/Oracle/"/>
+    
+      <category term="字符集" scheme="https://mxsail.com/tags/%E5%AD%97%E7%AC%A6%E9%9B%86/"/>
+    
+  </entry>
   
   <entry>
     <title>解决WEB应用接口调用时跨域以及session失效问题</title>
