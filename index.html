@@ -350,6 +350,173 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mxsail.com/2019/07/05/解决hibernate自动生成的表字段顺序与实体类顺序不一致的问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="木杰">
+      <meta itemprop="description" content="roadAheadEnding.isVisual = false; if(!spareEffort()){i.searchWith(willUnbending);}">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木杰の博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/05/解决hibernate自动生成的表字段顺序与实体类顺序不一致的问题/" class="post-title-link" itemprop="url">解决hibernate自动生产的表字段顺序与实体类顺序不一致的问题</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-07-05 20:02:51 / Modified: 20:04:49" itemprop="dateCreated datePublished" datetime="2019-07-05T20:02:51+08:00">2019-07-05</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>重写hibernate的PropertyContainer,使创建的表的顺序与实体类顺序一致</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.hibernate.cfg;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.hibernate.AnnotationException;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.MappingException;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.annotations.ManyToAny;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.annotations.Target;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.annotations.Type;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.annotations.common.reflection.XClass;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.annotations.common.reflection.XProperty;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.boot.jaxb.Origin;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.boot.jaxb.SourceType;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.cfg.annotations.HCANNHelper;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.internal.CoreMessageLogger;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.internal.util.StringHelper;</span><br><span class="line"><span class="keyword">import</span> org.jboss.logging.Logger;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.*;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 重写hibernate的PropertyContainer,使创建的表的顺序与实体类顺序一致</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PropertyContainer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> CoreMessageLogger LOG = Logger.getMessageLogger(CoreMessageLogger.class, PropertyContainer.class.getName());</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The class for which this container is created.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> XClass xClass;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> XClass entityAtStake;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Holds the AccessType indicated for use at the class/container-level for cases where persistent attribute</span></span><br><span class="line"><span class="comment">     * did not specify.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> AccessType classLevelAccessType;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> LinkedHashMap&lt;String, XProperty&gt; persistentAttributeMap;</span><br><span class="line"></span><br><span class="line">    PropertyContainer(XClass clazz, XClass entityAtStake, AccessType defaultClassLevelAccessType) &#123;</span><br><span class="line">        <span class="keyword">this</span>.xClass = clazz;</span><br><span class="line">        <span class="keyword">this</span>.entityAtStake = entityAtStake;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ( defaultClassLevelAccessType == AccessType.DEFAULT ) &#123;</span><br><span class="line">            <span class="comment">// this is effectively what the old code did when AccessType.DEFAULT was passed in</span></span><br><span class="line">            <span class="comment">// to getProperties(AccessType) from AnnotationBinder and InheritanceState</span></span><br><span class="line">            defaultClassLevelAccessType = AccessType.PROPERTY;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        AccessType localClassLevelAccessType = determineLocalClassDefinedAccessStrategy();</span><br><span class="line">        <span class="keyword">assert</span> localClassLevelAccessType != <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.classLevelAccessType = localClassLevelAccessType != AccessType.DEFAULT</span><br><span class="line">                ? localClassLevelAccessType</span><br><span class="line">                : defaultClassLevelAccessType;</span><br><span class="line">        <span class="keyword">assert</span> classLevelAccessType == AccessType.FIELD || classLevelAccessType == AccessType.PROPERTY;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.persistentAttributeMap = <span class="keyword">new</span> LinkedHashMap&lt;String, XProperty&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">final</span> List&lt;XProperty&gt; fields = xClass.getDeclaredProperties( AccessType.FIELD.getType() );</span><br><span class="line">        <span class="keyword">final</span> List&lt;XProperty&gt; getters = xClass.getDeclaredProperties( AccessType.PROPERTY.getType() );</span><br><span class="line"></span><br><span class="line">        preFilter( fields, getters );</span><br><span class="line"></span><br><span class="line">        <span class="keyword">final</span> Map&lt;String,XProperty&gt; persistentAttributesFromGetters = <span class="keyword">new</span> HashMap&lt;String, XProperty&gt;();</span><br><span class="line"></span><br><span class="line">        collectPersistentAttributesUsingLocalAccessType(</span><br><span class="line">                persistentAttributeMap,</span><br><span class="line">                persistentAttributesFromGetters,</span><br><span class="line">                fields,</span><br><span class="line">                getters</span><br><span class="line">        );</span><br><span class="line">        collectPersistentAttributesUsingClassLevelAccessType(</span><br><span class="line">                persistentAttributeMap,</span><br><span class="line">                persistentAttributesFromGetters,</span><br><span class="line">                fields,</span><br><span class="line">                getters</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">preFilter</span><span class="params">(List&lt;XProperty&gt; fields, List&lt;XProperty&gt; getters)</span> </span>&#123;</span><br><span class="line">        Iterator&lt;XProperty&gt; propertyIterator = fields.iterator();</span><br><span class="line">        <span class="keyword">while</span> ( propertyIterator.hasNext() ) &#123;</span><br><span class="line">            <span class="keyword">final</span> XProperty property = propertyIterator.next();</span><br><span class="line">            <span class="keyword">if</span> ( mustBeSkipped( property ) ) &#123;</span><br><span class="line">                propertyIterator.remove();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        propertyIterator = getters.iterator();</span><br><span class="line">        <span class="keyword">while</span> ( propertyIterator.hasNext() ) &#123;</span><br><span class="line">            <span class="keyword">final</span> XProperty property = propertyIterator.next();</span><br><span class="line">            <span class="keyword">if</span> ( mustBeSkipped( property ) ) &#123;</span><br><span class="line">                propertyIterator.remove();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">collectPersistentAttributesUsingLocalAccessType</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">            LinkedHashMap&lt;String, XProperty&gt; persistentAttributeMap,</span></span></span><br><span class="line"><span class="function"><span class="params">            Map&lt;String,XProperty&gt; persistentAttributesFromGetters,</span></span></span><br><span class="line"><span class="function"><span class="params">            List&lt;XProperty&gt; fields,</span></span></span><br><span class="line"><span class="function"><span class="params">            List&lt;XProperty&gt; getters)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Check fields...</span></span><br><span class="line">        Iterator&lt;XProperty&gt; propertyIterator = fields.iterator();</span><br><span class="line">        <span class="keyword">while</span> ( propertyIterator.hasNext() ) &#123;</span><br><span class="line">            <span class="keyword">final</span> XProperty xProperty = propertyIterator.next();</span><br><span class="line">            <span class="keyword">final</span> Access localAccessAnnotation = xProperty.getAnnotation( Access.class );</span><br><span class="line">            <span class="keyword">if</span> ( localAccessAnnotation == <span class="keyword">null</span></span><br><span class="line">                    || localAccessAnnotation.value() != javax.persistence.AccessType.FIELD ) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            propertyIterator.remove();</span><br><span class="line">            persistentAttributeMap.put( xProperty.getName(), xProperty );</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Check getters...</span></span><br><span class="line">        propertyIterator = getters.iterator();</span><br><span class="line">        <span class="keyword">while</span> ( propertyIterator.hasNext() ) &#123;</span><br><span class="line">            <span class="keyword">final</span> XProperty xProperty = propertyIterator.next();</span><br><span class="line">            <span class="keyword">final</span> Access localAccessAnnotation = xProperty.getAnnotation( Access.class );</span><br><span class="line">            <span class="keyword">if</span> ( localAccessAnnotation == <span class="keyword">null</span></span><br><span class="line">                    || localAccessAnnotation.value() != javax.persistence.AccessType.PROPERTY ) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            propertyIterator.remove();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">final</span> String name = xProperty.getName();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// HHH-10242 detect registration of the same property getter twice - eg boolean isId() + UUID getId()</span></span><br><span class="line">            <span class="keyword">final</span> XProperty previous = persistentAttributesFromGetters.get( name );</span><br><span class="line">            <span class="keyword">if</span> ( previous != <span class="keyword">null</span> ) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> org.hibernate.boot.MappingException(</span><br><span class="line">                        LOG.ambiguousPropertyMethods(</span><br><span class="line">                                xClass.getName(),</span><br><span class="line">                                HCANNHelper.annotatedElementSignature( previous ),</span><br><span class="line">                                HCANNHelper.annotatedElementSignature( xProperty )</span><br><span class="line">                        ),</span><br><span class="line">                        <span class="keyword">new</span> Origin( SourceType.ANNOTATION, xClass.getName() )</span><br><span class="line">                );</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            persistentAttributeMap.put( name, xProperty );</span><br><span class="line">            persistentAttributesFromGetters.put( name, xProperty );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">collectPersistentAttributesUsingClassLevelAccessType</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">            LinkedHashMap&lt;String, XProperty&gt; persistentAttributeMap,</span></span></span><br><span class="line"><span class="function"><span class="params">            Map&lt;String,XProperty&gt; persistentAttributesFromGetters,</span></span></span><br><span class="line"><span class="function"><span class="params">            List&lt;XProperty&gt; fields,</span></span></span><br><span class="line"><span class="function"><span class="params">            List&lt;XProperty&gt; getters)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ( classLevelAccessType == AccessType.FIELD ) &#123;</span><br><span class="line">            <span class="keyword">for</span> ( XProperty field : fields ) &#123;</span><br><span class="line">                <span class="keyword">if</span> ( persistentAttributeMap.containsKey( field.getName() ) ) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                persistentAttributeMap.put( field.getName(), field );</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> ( XProperty getter : getters ) &#123;</span><br><span class="line">                <span class="keyword">final</span> String name = getter.getName();</span><br><span class="line"></span><br><span class="line">                <span class="comment">// HHH-10242 detect registration of the same property getter twice - eg boolean isId() + UUID getId()</span></span><br><span class="line">                <span class="keyword">final</span> XProperty previous = persistentAttributesFromGetters.get( name );</span><br><span class="line">                <span class="keyword">if</span> ( previous != <span class="keyword">null</span> ) &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> org.hibernate.boot.MappingException(</span><br><span class="line">                            LOG.ambiguousPropertyMethods(</span><br><span class="line">                                    xClass.getName(),</span><br><span class="line">                                    HCANNHelper.annotatedElementSignature( previous ),</span><br><span class="line">                                    HCANNHelper.annotatedElementSignature( getter )</span><br><span class="line">                            ),</span><br><span class="line">                            <span class="keyword">new</span> Origin( SourceType.ANNOTATION, xClass.getName() )</span><br><span class="line">                    );</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> ( persistentAttributeMap.containsKey( name ) ) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                persistentAttributeMap.put( getter.getName(), getter );</span><br><span class="line">                persistentAttributesFromGetters.put( name, getter );</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> XClass <span class="title">getEntityAtStake</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> entityAtStake;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> XClass <span class="title">getDeclaringClass</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> xClass;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> AccessType <span class="title">getClassLevelAccessType</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> classLevelAccessType;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Collection&lt;XProperty&gt; <span class="title">getProperties</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        assertTypesAreResolvable();</span><br><span class="line">        <span class="keyword">return</span> Collections.unmodifiableCollection( persistentAttributeMap.values() );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">assertTypesAreResolvable</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> ( XProperty xProperty : persistentAttributeMap.values() ) &#123;</span><br><span class="line">            <span class="keyword">if</span> ( !xProperty.isTypeResolved() &amp;&amp; !discoverTypeWithoutReflection( xProperty ) ) &#123;</span><br><span class="line">                String msg = <span class="string">"Property "</span> + StringHelper.qualify( xClass.getName(), xProperty.getName() ) +</span><br><span class="line">                        <span class="string">" has an unbound type and no explicit target entity. Resolve this Generic usage issue"</span> +</span><br><span class="line">                        <span class="string">" or set an explicit target attribute (eg @OneToMany(target=) or use an explicit @Type"</span>;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> AnnotationException( msg );</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> AccessType <span class="title">determineLocalClassDefinedAccessStrategy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        AccessType classDefinedAccessType;</span><br><span class="line"></span><br><span class="line">        AccessType hibernateDefinedAccessType = AccessType.DEFAULT;</span><br><span class="line">        AccessType jpaDefinedAccessType = AccessType.DEFAULT;</span><br><span class="line"></span><br><span class="line">        org.hibernate.annotations.AccessType accessType = xClass.getAnnotation( org.hibernate.annotations.AccessType.class );</span><br><span class="line">        <span class="keyword">if</span> ( accessType != <span class="keyword">null</span> ) &#123;</span><br><span class="line">            hibernateDefinedAccessType = AccessType.getAccessStrategy( accessType.value() );</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Access access = xClass.getAnnotation( Access.class );</span><br><span class="line">        <span class="keyword">if</span> ( access != <span class="keyword">null</span> ) &#123;</span><br><span class="line">            jpaDefinedAccessType = AccessType.getAccessStrategy( access.value() );</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ( hibernateDefinedAccessType != AccessType.DEFAULT</span><br><span class="line">                &amp;&amp; jpaDefinedAccessType != AccessType.DEFAULT</span><br><span class="line">                &amp;&amp; hibernateDefinedAccessType != jpaDefinedAccessType ) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> MappingException(</span><br><span class="line">                    <span class="string">"@AccessType and @Access specified with contradicting values. Use of @Access only is recommended. "</span></span><br><span class="line">            );</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ( hibernateDefinedAccessType != AccessType.DEFAULT ) &#123;</span><br><span class="line">            classDefinedAccessType = hibernateDefinedAccessType;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            classDefinedAccessType = jpaDefinedAccessType;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> classDefinedAccessType;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">discoverTypeWithoutReflection</span><span class="params">(XProperty p)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ( p.isAnnotationPresent( OneToOne.class ) &amp;&amp; !p.getAnnotation( OneToOne.class )</span><br><span class="line">                .targetEntity()</span><br><span class="line">                .equals( <span class="keyword">void</span>.class ) ) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ( p.isAnnotationPresent( OneToMany.class ) &amp;&amp; !p.getAnnotation( OneToMany.class )</span><br><span class="line">                .targetEntity()</span><br><span class="line">                .equals( <span class="keyword">void</span>.class ) ) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ( p.isAnnotationPresent( ManyToOne.class ) &amp;&amp; !p.getAnnotation( ManyToOne.class )</span><br><span class="line">                .targetEntity()</span><br><span class="line">                .equals( <span class="keyword">void</span>.class ) ) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ( p.isAnnotationPresent( ManyToMany.class ) &amp;&amp; !p.getAnnotation( ManyToMany.class )</span><br><span class="line">                .targetEntity()</span><br><span class="line">                .equals( <span class="keyword">void</span>.class ) ) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ( p.isAnnotationPresent( org.hibernate.annotations.Any.class ) ) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ( p.isAnnotationPresent( ManyToAny.class ) ) &#123;</span><br><span class="line">            <span class="keyword">if</span> ( !p.isCollection() &amp;&amp; !p.isArray() ) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> AnnotationException( <span class="string">"@ManyToAny used on a non collection non array property: "</span> + p.getName() );</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ( p.isAnnotationPresent( Type.class ) ) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ( p.isAnnotationPresent( Target.class ) ) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">mustBeSkipped</span><span class="params">(XProperty property)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//TODO make those hardcoded tests more portable (through the bytecode provider?)</span></span><br><span class="line">        <span class="keyword">return</span> property.isAnnotationPresent( Transient.class )</span><br><span class="line">                || <span class="string">"net.sf.cglib.transform.impl.InterceptFieldCallback"</span>.equals( property.getType().getName() )</span><br><span class="line">                || <span class="string">"org.hibernate.bytecode.internal.javassist.FieldHandler"</span>.equals( property.getType().getName() );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+          
+    </div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://mxsail.com/2019/07/05/javaWeb应用防止xss攻击/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -395,7 +562,7 @@
                 
               
 
-              <time title="Created: 2019-07-05 19:59:47 / Modified: 20:00:31" itemprop="dateCreated datePublished" datetime="2019-07-05T19:59:47+08:00">2019-07-05</time>
+              <time title="Created: 2019-07-05 19:59:47 / Modified: 20:03:44" itemprop="dateCreated datePublished" datetime="2019-07-05T19:59:47+08:00">2019-07-05</time>
             </span>
           
 
@@ -414,7 +581,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/springboot/" itemprop="url" rel="index"><span itemprop="name">springboot</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
 
                 
                 
@@ -1097,7 +1264,7 @@
                 
               
 
-              <time title="Created: 2019-07-05 19:32:32 / Modified: 19:42:24" itemprop="dateCreated datePublished" datetime="2019-07-05T19:32:32+08:00">2019-07-05</time>
+              <time title="Created: 2019-07-05 19:32:32 / Modified: 20:03:40" itemprop="dateCreated datePublished" datetime="2019-07-05T19:32:32+08:00">2019-07-05</time>
             </span>
           
 
@@ -1116,7 +1283,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/springboot/" itemprop="url" rel="index"><span itemprop="name">springboot</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
 
                 
                 
@@ -1419,7 +1586,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1483,7 +1650,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
