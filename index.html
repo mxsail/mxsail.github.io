@@ -22,7 +22,9 @@
 
   
   
-  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.css">
 
 
 
@@ -214,7 +216,7 @@
     </div>
     
       
-        <p class="site-subtitle">记录生活中的点点滴滴</p>
+        <h1 class="site-subtitle" itemprop="description">记录生活中的点点滴滴</h1>
       
     
     
@@ -410,13 +412,13 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
                 
                 <a href="/2019/07/05/javaWeb应用防止xss攻击/" class="post-title-link" itemprop="url">javaWeb应用防止xss攻击</a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta"> 
@@ -534,7 +536,7 @@
           
             <p>
               1 . pom中增加依赖 
-&lt;!-- xss过滤组件 --&gt;&lt;dependency&gt;  &lt;groupId&gt;org.jsoup&lt;/groupId&gt;  &lt;artifactId&gt;jsoup&lt;/artifactId&gt;  &lt;vers
+&lt;!-- xss过滤组件 --&gt;&lt;dependency&gt;  &lt;groupId&gt;org.jsoup&lt;/groupId&gt;  &l
               ...
             </p>
           <!--noindex-->
@@ -621,13 +623,13 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
                 
                 <a href="/2019/07/05/解决hibernate自动生成的表字段顺序与实体类顺序不一致的问题/" class="post-title-link" itemprop="url">解决hibernate自动生产的表字段顺序与实体类顺序不一致的问题</a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta"> 
@@ -731,7 +733,7 @@
           
             <p>
               重写hibernate的PropertyContainer,使创建的表的顺序与实体类顺序一致
-package org.hibernate.cfg;import org.hibernate.AnnotationException;import org.hibernate.MappingExceptio
+package org.hibernate.cfg;import org.hibernate.Annota
               ...
             </p>
           <!--noindex-->
@@ -818,13 +820,13 @@ package org.hibernate.cfg;import org.hibernate.AnnotationException;import org.hi
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
                 
                 <a href="/2019/07/05/windows常用命令/" class="post-title-link" itemprop="url">windows常用命令</a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta"> 
@@ -945,12 +947,8 @@ tasklist|findstr "4416"
 
 
 终止某个进程
-taskkill /F /T /IM nginx.exe
-
-
-
-
-              
+taskkill /F /
+              ...
             </p>
           <!--noindex-->
           
@@ -1036,13 +1034,13 @@ taskkill /F /T /IM nginx.exe
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
                 
                 <a href="/2019/07/05/Oracle创建数据库/" class="post-title-link" itemprop="url">Oracle创建数据库</a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta"> 
@@ -1146,9 +1144,7 @@ taskkill /F /T /IM nginx.exe
           
             <p>
               表空间：tablespace为表空间名;datafile为存放.dbf文件的路径
-create tablespace struts2 datafile 'E:\oracle\dmp\struts2.dbf' size 500m
-
-用户：用户名struts2   密码 1  默认表空间名struts2
+create tablespace struts2 datafile 'E:\oracle\dmp\struts2.d
               ...
             </p>
           <!--noindex-->
@@ -1235,13 +1231,13 @@ create tablespace struts2 datafile 'E:\oracle\dmp\struts2.dbf' size 500m
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
                 
                 <a href="/2019/07/05/修改oracle字符集为AL32UTF8/" class="post-title-link" itemprop="url">修改oracle字符集为AL32UTF8</a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta"> 
@@ -1344,7 +1340,7 @@ create tablespace struts2 datafile 'E:\oracle\dmp\struts2.dbf' size 500m
         
           
             <p>
-              [oracle@VM_191_239_centos ~]$ sqlplus /nologSQL&gt; conn /as sysdbaSQL&gt; shutdown immediate;SQL&gt; startup mountSQL&gt; ALTER SYSTEM ENABLE RESTRIC
+              [oracle@VM_191_239_centos ~]$ sqlplus /nologSQL&gt; conn /as sysdbaSQL&gt; shutdown immediate;SQL&gt
               ...
             </p>
           <!--noindex-->
@@ -1431,13 +1427,13 @@ create tablespace struts2 datafile 'E:\oracle\dmp\struts2.dbf' size 500m
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
                 
                 <a href="/2019/07/05/解决WEB应用接口调用时跨域以及session失效问题/" class="post-title-link" itemprop="url">解决WEB应用接口调用时跨域以及session失效问题</a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta"> 
@@ -1541,8 +1537,7 @@ create tablespace struts2 datafile 'E:\oracle\dmp\struts2.dbf' size 500m
           
             <p>
               场景复现springboot应用前后端分离,客户跨域调用开放接口验证验证码时,输入正确的验证码无法通过验证
-解决方案方案一 :直接在 Controller 上使用@CrossOrigin 注解(版本要求Spring MVC4.2 + , 未验证)
-方案二 :重写 Filter 的 doFilter 
+解决方案方案一 :直接在 Controller 上使用@CrossOrigin 注解(版本要
               ...
             </p>
           <!--noindex-->
@@ -1629,13 +1624,13 @@ create tablespace struts2 datafile 'E:\oracle\dmp\struts2.dbf' size 500m
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
                 
                 <a href="/2019/07/05/Apache开启反向代理-windows/" class="post-title-link" itemprop="url">Apache开启反向代理-windows</a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta"> 
@@ -1738,7 +1733,7 @@ create tablespace struts2 datafile 'E:\oracle\dmp\struts2.dbf' size 500m
         
           
             <p>
-              修改httpd.conf配置文件1. 反注释以下模块LoadModule negotiation_module modules/mod_negotiation.soLoadModule proxy_module modules/mod_proxy.soLoadModule proxy_ajp_mod
+              修改httpd.conf配置文件1. 反注释以下模块LoadModule negotiation_module modules/mod_negotiation.soLoadModule proxy_m
               ...
             </p>
           <!--noindex-->
@@ -1933,7 +1928,7 @@ create tablespace struts2 datafile 'E:\oracle\dmp\struts2.dbf' size 500m
                   
                     
                   
-                  <a href="https://github.com/mxsail" title="GitHub &rarr; https://github.com/mxsail" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL214c2FpbA==" title="GitHub &rarr; https://github.com/mxsail"><i class="fa fa-fw fa-github"></i>GitHub</span>
                 </span>
               
                 <span class="links-of-author-item">
@@ -1944,7 +1939,7 @@ create tablespace struts2 datafile 'E:\oracle\dmp\struts2.dbf' size 500m
                   
                     
                   
-                  <a href="mailto:werifun@gmail.com" title="E-Mail &rarr; mailto:werifun@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <span class="exturl" data-url="bWFpbHRvOndlcmlmdW5AZ21haWwuY29t" title="E-Mail &rarr; mailto:werifun@gmail.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
                 </span>
               
             </div>
@@ -2003,8 +1998,6 @@ create tablespace struts2 datafile 'E:\oracle\dmp\struts2.dbf' size 500m
   
 </div>
 
-
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 
@@ -2154,8 +2147,13 @@ create tablespace struts2 datafile 'E:\oracle\dmp\struts2.dbf' size 500m
 
 
   
+  <script src="/js/js.cookie.js?v=7.2.0"></script>
+  <script src="/js/scroll-cookie.js?v=7.2.0"></script>
+
 
   
+  <script src="/js/exturl.js?v=7.2.0"></script>
+
 
   
 
@@ -2505,7 +2503,9 @@ create tablespace struts2 datafile 'E:\oracle\dmp\struts2.dbf' size 500m
   
   
   
-  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+    
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.js"></script>
   <script>
     
       pbOptions = {};

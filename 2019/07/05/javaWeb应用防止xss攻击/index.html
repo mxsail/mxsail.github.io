@@ -22,7 +22,9 @@
 
   
   
-  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.css">
 
 
 
@@ -214,7 +216,7 @@
     </div>
     
       
-        <p class="site-subtitle">记录生活中的点点滴滴</p>
+        <h1 class="site-subtitle" itemprop="description">记录生活中的点点滴滴</h1>
       
     
     
@@ -410,11 +412,11 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">javaWeb应用防止xss攻击
+          <h2 class="post-title" itemprop="name headline">javaWeb应用防止xss攻击
 
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta"> 
@@ -552,6 +554,10 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.xbz.web.common.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.xbz.web.common.filter.XssFilter;</span><br><span class="line"><span class="keyword">import</span> com.google.common.collect.Maps;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.web.servlet.FilterRegistrationBean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">XssConfig</span></span>&#123;</span><br><span class="line">​    <span class="comment">/***</span></span><br><span class="line"><span class="comment">​     ** xss过滤拦截器*</span></span><br><span class="line"><span class="comment">​     **/</span></span><br><span class="line">​    <span class="meta">@Bean</span></span><br><span class="line">​    <span class="function"><span class="keyword">public</span> FilterRegistrationBean <span class="title">xssFilterRegistrationBean</span><span class="params">()</span> </span>&#123;</span><br><span class="line">​        FilterRegistrationBean filterRegistrationBean = <span class="keyword">new</span> FilterRegistrationBean();</span><br><span class="line">​        filterRegistrationBean.setFilter(<span class="keyword">new</span> XssFilter());</span><br><span class="line">​        filterRegistrationBean.setOrder(<span class="number">1</span>);</span><br><span class="line">​        filterRegistrationBean.setEnabled(<span class="keyword">true</span>);</span><br><span class="line">​        filterRegistrationBean.addUrlPatterns(<span class="string">"/*"</span>);</span><br><span class="line">​        Map&lt;String, String&gt; initParameters = Maps.newHashMap();</span><br><span class="line">​        initParameters.put(<span class="string">"excludes"</span>, <span class="string">"/favicon.ico,/img/*,/js/*,/css/*"</span>);</span><br><span class="line">​        initParameters.put(<span class="string">"isIncludeRichText"</span>, <span class="string">"true"</span>);</span><br><span class="line">​        filterRegistrationBean.setInitParameters(initParameters);</span><br><span class="line">​        <span class="keyword">return</span> filterRegistrationBean;</span><br><span class="line">​    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
+
+    
+      
+
 
     
 
@@ -821,7 +827,7 @@
                   
                     
                   
-                  <a href="https://github.com/mxsail" title="GitHub &rarr; https://github.com/mxsail" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL214c2FpbA==" title="GitHub &rarr; https://github.com/mxsail"><i class="fa fa-fw fa-github"></i>GitHub</span>
                 </span>
               
                 <span class="links-of-author-item">
@@ -832,7 +838,7 @@
                   
                     
                   
-                  <a href="mailto:werifun@gmail.com" title="E-Mail &rarr; mailto:werifun@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <span class="exturl" data-url="bWFpbHRvOndlcmlmdW5AZ21haWwuY29t" title="E-Mail &rarr; mailto:werifun@gmail.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
                 </span>
               
             </div>
@@ -891,8 +897,6 @@
   
 </div>
 
-
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 
@@ -1046,8 +1050,13 @@
 
 
   
+  <script src="/js/js.cookie.js?v=7.2.0"></script>
+  <script src="/js/scroll-cookie.js?v=7.2.0"></script>
+
 
   
+  <script src="/js/exturl.js?v=7.2.0"></script>
+
 
   
 
@@ -1417,7 +1426,9 @@
   
   
   
-  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+    
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.js"></script>
   <script>
     
       pbOptions = {};
