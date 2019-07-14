@@ -111,18 +111,20 @@
 
 
 
-  <meta name="description" content="场景复现springboot应用前后端分离,客户跨域调用开放接口验证验证码时,输入正确的验证码无法通过验证 解决方案方案一 :直接在 Controller 上使用@CrossOrigin 注解(版本要求Spring MVC4.2 + , 未验证) 方案二 :重写 Filter 的 doFilter 方法 1234567891011121314151617181920212223242526impo">
-<meta name="keywords" content="api,跨域,java,springboot">
+  <meta name="description" content="1 概述​    对象模型到关系数据库的映射的一部分是将对象模型中的名称映射到相应的数据库名称。Hibernate5将此视为两阶段过程：  第一阶段是从域模型映射中确定正确的逻辑名称。逻辑名可以由用户显式指定（例如使用@Column或 @Table），也可以由Hibernate通过ImplicitNamingStrategy策略隐式确定 。 第二阶段是将此逻辑名称解析为PhysicalNaming">
+<meta name="keywords" content="JPA,Hibernate">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解决WEB应用接口调用时跨域以及session失效问题">
-<meta property="og:url" content="https://mxsail.com/post/61139f8a.html">
+<meta property="og:title" content="Hibernate 命名策略配置">
+<meta property="og:url" content="https://mxsail.com/post/f0ad81e.html">
 <meta property="og:site_name" content="木杰の博客">
-<meta property="og:description" content="场景复现springboot应用前后端分离,客户跨域调用开放接口验证验证码时,输入正确的验证码无法通过验证 解决方案方案一 :直接在 Controller 上使用@CrossOrigin 注解(版本要求Spring MVC4.2 + , 未验证) 方案二 :重写 Filter 的 doFilter 方法 1234567891011121314151617181920212223242526impo">
+<meta property="og:description" content="1 概述​    对象模型到关系数据库的映射的一部分是将对象模型中的名称映射到相应的数据库名称。Hibernate5将此视为两阶段过程：  第一阶段是从域模型映射中确定正确的逻辑名称。逻辑名可以由用户显式指定（例如使用@Column或 @Table），也可以由Hibernate通过ImplicitNamingStrategy策略隐式确定 。 第二阶段是将此逻辑名称解析为PhysicalNaming">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-06T10:23:35.487Z">
+<meta property="og:image" content="https://docs.jboss.org/hibernate/orm/5.3/userguide/html_single/images/domain/naming/implicit_naming_strategy_diagram.svg">
+<meta property="og:updated_time" content="2019-07-14T08:22:48.954Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解决WEB应用接口调用时跨域以及session失效问题">
-<meta name="twitter:description" content="场景复现springboot应用前后端分离,客户跨域调用开放接口验证验证码时,输入正确的验证码无法通过验证 解决方案方案一 :直接在 Controller 上使用@CrossOrigin 注解(版本要求Spring MVC4.2 + , 未验证) 方案二 :重写 Filter 的 doFilter 方法 1234567891011121314151617181920212223242526impo">
+<meta name="twitter:title" content="Hibernate 命名策略配置">
+<meta name="twitter:description" content="1 概述​    对象模型到关系数据库的映射的一部分是将对象模型中的名称映射到相应的数据库名称。Hibernate5将此视为两阶段过程：  第一阶段是从域模型映射中确定正确的逻辑名称。逻辑名可以由用户显式指定（例如使用@Column或 @Table），也可以由Hibernate通过ImplicitNamingStrategy策略隐式确定 。 第二阶段是将此逻辑名称解析为PhysicalNaming">
+<meta name="twitter:image" content="https://docs.jboss.org/hibernate/orm/5.3/userguide/html_single/images/domain/naming/implicit_naming_strategy_diagram.svg">
 
 
 
@@ -132,7 +134,7 @@
 
   
   
-  <link rel="canonical" href="https://mxsail.com/post/61139f8a">
+  <link rel="canonical" href="https://mxsail.com/post/f0ad81e">
 
 
 
@@ -142,7 +144,7 @@
   };
 </script>
 
-  <title>解决WEB应用接口调用时跨域以及session失效问题 | 木杰の博客</title>
+  <title>Hibernate 命名策略配置 | 木杰の博客</title>
   
 
 
@@ -395,7 +397,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mxsail.com/post/61139f8a.html">
+    <link itemprop="mainEntityOfPage" href="https://mxsail.com/post/f0ad81e.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="木杰">
@@ -412,7 +414,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">解决WEB应用接口调用时跨域以及session失效问题
+          <h2 class="post-title" itemprop="name headline">Hibernate 命名策略配置
 
               
             
@@ -439,7 +441,7 @@
                 
               
 
-              <time title="创建时间：2019-07-05 19:32:32" itemprop="dateCreated datePublished" datetime="2019-07-05T19:32:32+08:00">2019-07-05</time>
+              <time title="创建时间：2019-07-09 16:07:35" itemprop="dateCreated datePublished" datetime="2019-07-09T16:07:35+08:00">2019-07-09</time>
             </span>
           
 
@@ -454,7 +456,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-06 18:23:35" itemprop="dateModified" datetime="2019-07-06T18:23:35+08:00">2019-07-06</time>
+                <time title="修改时间：2019-07-14 16:22:48" itemprop="dateModified" datetime="2019-07-14T16:22:48+08:00">2019-07-14</time>
               </span>
             
           
@@ -503,7 +505,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">1.6k</span>
+              <span title="本文字数">6.6k</span>
             </span>
           
 
@@ -515,7 +517,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">1 分钟</span>
+              <span title="阅读时长">6 分钟</span>
             </span>
           
 
@@ -534,14 +536,65 @@
       
 
       
-        <h2 id="场景复现"><a href="#场景复现" class="headerlink" title="场景复现"></a>场景复现</h2><p>springboot应用前后端分离,客户跨域调用开放接口验证验证码时,输入正确的验证码无法通过验证</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>方案一 :直接在 Controller 上使用@CrossOrigin 注解(版本要求Spring MVC4.2 + , 未验证)</p>
-<p>方案二 :重写 Filter 的 doFilter 方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;  </span><br><span class="line"><span class="keyword">import</span> javax.servlet.\*;  </span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;  </span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;  </span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CorsFilter</span>  <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123; </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig filterConfig)</span> <span class="keyword">throws</span>  ServletException </span>&#123;  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest req, ServletResponse res, FilterChain chain)</span> <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">        HttpServletResponse response = (HttpServletResponse) res;</span><br><span class="line">        HttpServletRequest request = (HttpServletRequest)req;</span><br><span class="line">        response.setHeader(<span class="string">"Access-Control-Allow-Origin"</span>,request.getHeader(<span class="string">"Origin"</span>));</span><br><span class="line">        response.setHeader(<span class="string">"Access-Control-Allow-Methods"</span>, <span class="string">"POST, GET, OPTIONS, DELETE"</span>);</span><br><span class="line">        response.setHeader(<span class="string">"Access-Control-Max-Age"</span>, <span class="string">"3600"</span>);</span><br><span class="line">        response.setHeader(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"x-requested-with"</span>);</span><br><span class="line">        response.setHeader(<span class="string">"Access-Control-Allow-Credentials"</span>,<span class="string">"true"</span>);</span><br><span class="line">        chain.doFilter(req, res);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1 概述"></a>1 概述</h1><p>​    对象模型到关系数据库的映射的一部分是将对象模型中的名称映射到相应的数据库名称。Hibernate5将此视为两阶段过程：</p>
+<ol>
+<li>第一阶段是从域模型映射中确定正确的逻辑名称。逻辑名可以由用户显式指定（例如使用<code>@Column</code>或 <code>@Table</code>），也可以由Hibernate通过ImplicitNamingStrategy策略隐式确定 。</li>
+<li>第二阶段是将此逻辑名称解析为PhysicalNamingStrategy策略定义的物理名称。</li>
+</ol>
+<p>​    可以通过分别设置spring.jpa.hibernate.naming.physical-strategy和 spring.jpa.hibernate.naming.implicit-strategy配置来设置物理策略实现和隐式策略实现的完全限定类名。或者，如果ImplicitNamingStrategy或者PhysicalNamingStrategybean在应用程序上下文中可用，Hibernate将自动配置为使用它们。<br>​    默认情况下，Spring Boot配置物理命名策略 SpringPhysicalNamingStrategy。这个实现提供了与Hibernate 4相同的表结构：所有点都被下划线替换，而驼峰外壳也被下划线替换。默认情况下，所有表名都以小写形式生成，但如果您的架构需要，可以覆盖该策略。</p>
+<blockquote>
+<p><strong>历史命名策略:</strong></p>
+<p>历史上，Hibernate只定义了一个org.hibernate.cfg.NamingStrategy。这个单一的命名策略通常不够灵活,无法正确的应用给定的命名“规则”，因为API缺乏可供决定的信息,或者是因为在发展过程中没有定义好。由于这些限制,org.hibernate.cfg.NamingStrategy已经被弃用,然后删除。</p>
+</blockquote>
+<p><strong>每个命名策略背后的理念是最小化开发人员必须为映射域模型提供的重复信息量。</strong></p>
+<h1 id="2-依赖"><a href="#2-依赖" class="headerlink" title="2 依赖"></a>2 依赖</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.hibernate<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hibernate-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.3.6.Final<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>​    前端调用请求时加上: <strong>xhrFields: {withCredentials: true},crossDomain: true</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> $.ajax(&#123;</span><br><span class="line"> 	type: <span class="string">'POST'</span>,</span><br><span class="line"> 	url: <span class="string">'/IGI/openPublicApplication/depts'</span>,</span><br><span class="line">      xhrFields: &#123;<span class="attr">withCredentials</span>: <span class="literal">true</span>&#125;, </span><br><span class="line">      crossDomain: <span class="literal">true</span></span><br><span class="line"> 	data:&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;,</span><br><span class="line"> 	dataType: <span class="string">'json'</span>,</span><br><span class="line"> 	success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">	...</span><br><span class="line"> 	&#125;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="3-隐式命名策略-ImplicitNamingStrategy"><a href="#3-隐式命名策略-ImplicitNamingStrategy" class="headerlink" title="3 隐式命名策略(ImplicitNamingStrategy)"></a>3 隐式命名策略(<em>ImplicitNamingStrategy</em>)</h1><p>隐式命名策略(ImplicitNamingStrategy)的作用是当实体没有显式命名（例如使用<code>@Column</code>或 <code>@Table</code>）它映射到的数据库表，或者，当某个特定属性没有显式命名它映射到的数据库列时，确定逻辑名称。</p>
+<p><img src="https://docs.jboss.org/hibernate/orm/5.3/userguide/html_single/images/domain/naming/implicit_naming_strategy_diagram.svg" alt="éå¼å½åç­ç¥å¾"></p>
+<p>Hibernate定义了多个ImplicitNamingStrategy实现。我们可以从四种内置策略中进行选择，或者我们可以创建自己的策略。</p>
+<p>有多种方法可以指定要使用的ImplicitNamingStrategy。</p>
+<ul>
+<li>应用程序可以使用 spring.jpa.hibernate.naming.implicit-strategy配置设置指定实现</li>
+</ul>
+<p>四种内置策略:</p>
+<ol>
+<li>ImplicitNamingStrategyJpaCompliantImpl : <strong>默认</strong>,符合JPA 2.0标准的命名策略</li>
+<li>ImplicitNamingStrategyLegacyHbmImpl: 符合原始的Hibernate命名策略</li>
+<li>ImplicitNamingStrategyLegacyJpaImpl: 符合为JPA 1.0开发的遗留命名策略</li>
+<li>ImplicitNamingStrategyComponentPathImpl: 主要遵循<code>ImplicitNamingStrategyJpaCompliantImpl</code>规则，除了它使用完整的复合路径，而不仅仅是结束属性部分</li>
+</ol>
+<ul>
+<li>引用实现<code>org.hibernate.boot.model.naming.ImplicitNamingStrategy</code>的类</li>
+<li>实现<code>org.hibernate.boot.model.naming.ImplicitNamingStrategy</code>合同的类的FQN</li>
+<li>应用程序和集成可以利用<code>org.hibernate.boot.MetadataBuilder#applyImplicitNamingStrategy</code> 指定要使用的ImplicitNamingStrategy。</li>
+</ul>
+<h1 id="4-物理命名策略-PhysicalNamingStrategy"><a href="#4-物理命名策略-PhysicalNamingStrategy" class="headerlink" title="4 物理命名策略(PhysicalNamingStrategy)"></a>4 物理命名策略(<em>PhysicalNamingStrategy</em>)</h1><p>许多组织围绕数据库对象（表，列，外键等）的命名定义规则。PhysicalNamingStrategy的想法是帮助实现这样的命名规则，而不必通过显式名称将它们硬编码到映射中。</p>
+<p>举个例子,在没有明确指定时,隐式命名策略是将accountNumber属性映射到逻辑列名accountNumber,而物理命名策略的作用是将nickName映射到物理列名acct_num</p>
+<blockquote>
+<p>虽然,在这种情况下映射到acct_num可以通过隐式命名策略来实现,但重点是分离关注点。无论属性是否明确指定列名，或者我们是否隐式确定，都将应用PhysicalNamingStrategy。只有在未给出显式名称时才会应用ImplicitNamingStrategy。所以它取决于需求和意图。</p>
+</blockquote>
+<p>默认实现是简单地使用逻辑名称作为物理名称。但是，应用程序可以自定义PhysicalNamingStrategy的实现。</p>
+<p>举个例子: 以下是一个名为Acme Corp的虚构公司的PhysicalNamingStrategy示例，其命名标准是：</p>
+<ul>
+<li>喜欢用下划线分隔的单词而不是骆驼套管</li>
+<li>用标准缩写替换某些单词</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Hibernate, Relational Persistence for Idiomatic Java</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * License: GNU Lesser General Public License (LGPL), version 2.1 or later.</span></span><br><span class="line"><span class="comment"> * See the lgpl.txt file in the root directory or &lt;http://www.gnu.org/licenses/lgpl-2.1.html&gt;.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">package</span> org.hibernate.userguide.naming;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Locale;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.TreeMap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.hibernate.boot.model.naming.Identifier;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.boot.model.naming.PhysicalNamingStrategy;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.engine.jdbc.env.spi.JdbcEnvironment;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.commons.lang3.StringUtils;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * An example PhysicalNamingStrategy that implements database object naming standards</span></span><br><span class="line"><span class="comment"> * for our fictitious company Acme Corp.</span></span><br><span class="line"><span class="comment"> * &lt;p/&gt;</span></span><br><span class="line"><span class="comment"> * In general Acme Corp prefers underscore-delimited words rather than camel casing.</span></span><br><span class="line"><span class="comment"> * &lt;p/&gt;</span></span><br><span class="line"><span class="comment"> * Additionally standards call for the replacement of certain words with abbreviations.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Steve Ebersole</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AcmeCorpPhysicalNamingStrategy</span> <span class="keyword">implements</span> <span class="title">PhysicalNamingStrategy</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Map&lt;String,String&gt; ABBREVIATIONS = buildAbbreviationMap();</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Identifier <span class="title">toPhysicalCatalogName</span><span class="params">(Identifier name, JdbcEnvironment jdbcEnvironment)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// Acme naming standards do not apply to catalog names</span></span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Identifier <span class="title">toPhysicalSchemaName</span><span class="params">(Identifier name, JdbcEnvironment jdbcEnvironment)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// Acme naming standards do not apply to schema names</span></span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Identifier <span class="title">toPhysicalTableName</span><span class="params">(Identifier name, JdbcEnvironment jdbcEnvironment)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">final</span> List&lt;String&gt; parts = splitAndReplace( name.getText() );</span><br><span class="line">		<span class="keyword">return</span> jdbcEnvironment.getIdentifierHelper().toIdentifier(</span><br><span class="line">				join( parts ),</span><br><span class="line">				name.isQuoted()</span><br><span class="line">		);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Identifier <span class="title">toPhysicalSequenceName</span><span class="params">(Identifier name, JdbcEnvironment jdbcEnvironment)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">final</span> LinkedList&lt;String&gt; parts = splitAndReplace( name.getText() );</span><br><span class="line">		<span class="comment">// Acme Corp says all sequences should end with _seq</span></span><br><span class="line">		<span class="keyword">if</span> ( !<span class="string">"seq"</span>.equalsIgnoreCase( parts.getLast() ) ) &#123;</span><br><span class="line">			parts.add( <span class="string">"seq"</span> );</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> jdbcEnvironment.getIdentifierHelper().toIdentifier(</span><br><span class="line">				join( parts ),</span><br><span class="line">				name.isQuoted()</span><br><span class="line">		);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Identifier <span class="title">toPhysicalColumnName</span><span class="params">(Identifier name, JdbcEnvironment jdbcEnvironment)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">final</span> List&lt;String&gt; parts = splitAndReplace( name.getText() );</span><br><span class="line">		<span class="keyword">return</span> jdbcEnvironment.getIdentifierHelper().toIdentifier(</span><br><span class="line">				join( parts ),</span><br><span class="line">				name.isQuoted()</span><br><span class="line">		);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Map&lt;String, String&gt; <span class="title">buildAbbreviationMap</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		TreeMap&lt;String,String&gt; abbreviationMap = <span class="keyword">new</span> TreeMap&lt;&gt; ( String.CASE_INSENSITIVE_ORDER );</span><br><span class="line">		abbreviationMap.put( <span class="string">"account"</span>, <span class="string">"acct"</span> );</span><br><span class="line">		abbreviationMap.put( <span class="string">"number"</span>, <span class="string">"num"</span> );</span><br><span class="line">		<span class="keyword">return</span> abbreviationMap;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> LinkedList&lt;String&gt; <span class="title">splitAndReplace</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		LinkedList&lt;String&gt; result = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">		<span class="keyword">for</span> ( String part : StringUtils.splitByCharacterTypeCamelCase( name ) ) &#123;</span><br><span class="line">			<span class="keyword">if</span> ( part == <span class="keyword">null</span> || part.trim().isEmpty() ) &#123;</span><br><span class="line">				<span class="comment">// skip null and space</span></span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			part = applyAbbreviationReplacement( part );</span><br><span class="line">			result.add( part.toLowerCase( Locale.ROOT ) );</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> String <span class="title">applyAbbreviationReplacement</span><span class="params">(String word)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> ( ABBREVIATIONS.containsKey( word ) ) &#123;</span><br><span class="line">			<span class="keyword">return</span> ABBREVIATIONS.get( word );</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> word;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> String <span class="title">join</span><span class="params">(List&lt;String&gt; parts)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">boolean</span> firstPass = <span class="keyword">true</span>;</span><br><span class="line">		String separator = <span class="string">""</span>;</span><br><span class="line">		StringBuilder joined = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">		<span class="keyword">for</span> ( String part : parts ) &#123;</span><br><span class="line">			joined.append( separator ).append( part );</span><br><span class="line">			<span class="keyword">if</span> ( firstPass ) &#123;</span><br><span class="line">				firstPass = <span class="keyword">false</span>;</span><br><span class="line">				separator = <span class="string">"_"</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> joined.toString();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>有多种方法可以指定要使用的PhysicalNamingStrategy。</p>
+<p>首先，应用程序可以使用spring.jpa.hibernate.naming.physical-strategy配置设置指定实现，该配置设置接受：</p>
+<ul>
+<li>引用实现<code>org.hibernate.boot.model.naming.PhysicalNamingStrategy</code>合同的类</li>
+<li>实现<code>org.hibernate.boot.model.naming.PhysicalNamingStrategy</code>合同的类的FQN</li>
+</ul>
+<p>其次，应用程序和集成可以利用<code>org.hibernate.boot.MetadataBuilder#applyPhysicalNamingStrategy</code>。</p>
+<p>参考资料:</p>
+<ul>
+<li><p>&lt;<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmFlbGR1bmcuY29tL2hpYmVybmF0ZS1uYW1pbmctc3RyYXRlZ3k=" title="https://www.baeldung.com/hibernate-naming-strategy">https://www.baeldung.com/hibernate-naming-strategy<i class="fa fa-external-link"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmpib3NzLm9yZy9oaWJlcm5hdGUvb3JtLzUuMy91c2VyZ3VpZGUvaHRtbF9zaW5nbGUvSGliZXJuYXRlX1VzZXJfR3VpZGUuaHRtbCNuYW1pbmc=" title="https://docs.jboss.org/hibernate/orm/5.3/userguide/html_single/Hibernate_User_Guide.html#naming">https://docs.jboss.org/hibernate/orm/5.3/userguide/html_single/Hibernate_User_Guide.html#naming<i class="fa fa-external-link"></i></span></p>
+</li>
+</ul>
 
       
     </div>
@@ -565,12 +618,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/post/61139f8a.html">解决WEB应用接口调用时跨域以及session失效问题</a></p>
+  <p><span>本文标题:</span><a href="/post/f0ad81e.html">Hibernate 命名策略配置</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 木杰 的个人博客">木杰</a></p>
-  <p><span>发布时间:</span>2019年07月05日 - 19:07</p>
-  <p><span>最后更新:</span>2019年07月06日 - 18:07</p>
-  <p><span>原始链接:</span><a href="/post/61139f8a.html" title="解决WEB应用接口调用时跨域以及session失效问题">https://mxsail.com/post/61139f8a.html</a>
-    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://mxsail.com/post/61139f8a.html" aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2019年07月09日 - 16:07</p>
+  <p><span>最后更新:</span>2019年07月14日 - 16:07</p>
+  <p><span>原始链接:</span><a href="/post/f0ad81e.html" title="Hibernate 命名策略配置">https://mxsail.com/post/f0ad81e.html</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://mxsail.com/post/f0ad81e.html" aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -607,13 +660,9 @@
         
         <div class="post-tags">
           
-            <a href="/tags/api/" rel="tag"><i class="fa fa-tag"></i> api</a>
+            <a href="/tags/JPA/" rel="tag"><i class="fa fa-tag"></i> JPA</a>
           
-            <a href="/tags/跨域/" rel="tag"><i class="fa fa-tag"></i> 跨域</a>
-          
-            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
-          
-            <a href="/tags/springboot/" rel="tag"><i class="fa fa-tag"></i> springboot</a>
+            <a href="/tags/Hibernate/" rel="tag"><i class="fa fa-tag"></i> Hibernate</a>
           
         </div>
       
@@ -647,8 +696,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/post/2fb868b6.html" rel="next" title="Apache开启反向代理-windows">
-                <i class="fa fa-chevron-left"></i> Apache开启反向代理-windows
+              <a href="/post/565abe7e.html" rel="next" title="解决hibernate自动生成的表字段顺序与实体类顺序不一致的问题">
+                <i class="fa fa-chevron-left"></i> 解决hibernate自动生成的表字段顺序与实体类顺序不一致的问题
               </a>
             
           </div>
@@ -656,10 +705,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/post/e3021608.html" rel="prev" title="修改oracle字符集为AL32UTF8">
-                修改oracle字符集为AL32UTF8 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -876,7 +921,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#场景复现"><span class="nav-number">1.</span> <span class="nav-text">场景复现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概述"><span class="nav-number">1.</span> <span class="nav-text">1 概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-依赖"><span class="nav-number">2.</span> <span class="nav-text">2 依赖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-隐式命名策略-ImplicitNamingStrategy"><span class="nav-number">3.</span> <span class="nav-text">3 隐式命名策略(ImplicitNamingStrategy)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-物理命名策略-PhysicalNamingStrategy"><span class="nav-number">4.</span> <span class="nav-text">4 物理命名策略(PhysicalNamingStrategy)</span></a></li></ol></div>
             
 
           </div>
@@ -1093,7 +1138,7 @@
 
 <script>
   window.livereOptions = {
-    refer: 'post/61139f8a.html'
+    refer: 'post/f0ad81e.html'
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];
