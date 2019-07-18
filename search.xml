@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[html网页表单中禁用复制、右键、粘贴、剪切等方法]]></title>
+    <url>%2Fpost%2F43bca03d.html</url>
+    <content type="text"><![CDATA[123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778//屏蔽右键菜单document.oncontextmenu = function (event)&#123; if(window.event)&#123; event = window.event; &#125;try&#123; var the = event.srcElement; if (!((the.tagName == "INPUT" &amp;&amp; the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA"))&#123; return false; &#125; return true; &#125;catch (e)&#123; return false; &#125;&#125;//屏蔽粘贴document.onpaste = function (event)&#123; if(window.event)&#123; event = window.event; &#125;try&#123; var the = event.srcElement; if (!((the.tagName == "INPUT" &amp;&amp; the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA"))&#123; return false; &#125; return true; &#125;catch (e)&#123; return false; &#125;&#125;//屏蔽复制document.oncopy = function (event)&#123; if(window.event)&#123; event = window.event; &#125;try&#123; var the = event.srcElement; if(!((the.tagName == "INPUT" &amp;&amp; the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA"))&#123; return false; &#125; return true; &#125;catch (e)&#123; return false; &#125;&#125;//屏蔽剪切document.oncut = function (event)&#123; if(window.event)&#123; event = window.event; &#125;try&#123; var the = event.srcElement; if(!((the.tagName == "INPUT" &amp;&amp; the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA"))&#123; return false; &#125; return true; &#125;catch (e)&#123; return false; &#125;&#125;//屏蔽选中document.onselectstart = function (event)&#123; if(window.event)&#123; event = window.event; &#125;try&#123; var the = event.srcElement; if (!((the.tagName == "INPUT" &amp;&amp; the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA"))&#123; return false; &#125; return true; &#125; catch (e) &#123; return false; &#125;&#125;]]></content>
+      <categories>
+        <category>javascript</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[Windows10 四月更新启用文件名大小写敏感]]></title>
     <url>%2Fpost%2F3a15e7e.html</url>
     <content type="text"><![CDATA[basic1234# 开启大小写敏感fsutil.exe file SetCaseSensitiveInfo &lt;文件夹绝对路径&gt; enable# 关闭大小写敏感fsutil.exe file SetCaseSensitiveInfo &lt;文件夹绝对路径&gt; disable 注意事项: 只支持windows10 四月更新及以上版本; 在操作前你需要明确知道哪些文件夹你需要启用区分功能，因为开启该功能并不是全局而是针对特定文件夹; 文件夹所在分区的格式是NTFS; 必须以管理员身份执行以上命令; 慎重开启该功能!!! 开启大小写敏感是为了存储Linux子系统(WSL,Windows Subsystem for Linux)文件用。隨意开启可能导致各种未知错误。]]></content>
